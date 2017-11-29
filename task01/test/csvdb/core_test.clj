@@ -54,8 +54,8 @@
 
 (deftest select-test
   (testing
-      (is (= (vec (select student))
-             [{:id 1, :year 1998, :surname "Ivanov"} {:id 2, :year 1997, :surname "Petrov"} {:id 3, :year 1996, :surname "Sidorov"}]))
+    (is (= (vec (select student))
+           [{:id 1, :year 1998, :surname "Ivanov"} {:id 2, :year 1997, :surname "Petrov"} {:id 3, :year 1996, :surname "Sidorov"}]))
     (is (= (vec (select student :order-by :year))
            (vec '({:id 3, :year 1996, :surname "Sidorov"} {:id 2, :year 1997, :surname "Petrov"} {:id 1, :year 1998, :surname "Ivanov"}))))
     (is (= (vec (select student :where #(> (:id %) 1)))
