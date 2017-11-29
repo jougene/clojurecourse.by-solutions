@@ -36,6 +36,24 @@
 
 ;; (map list (next student-tbl))
 ;; (data-table student-tbl)
+  ;; (key-value-pairs [:id :surname :year :group_id] ["1" "Ivanov" "1996"])
+  ;; => (:id "1" :surname "Ivanov" :year "1996")
+  ;;
+  ;; Hint: flatten, map, list
+(defn key-value-pairs [tbl-keys tbl-record]
+  (flatten 
+    (map #(list %1 %2) [:id :surname :year :group_id] ["1" "Ivanov" "1996"])))
+
+;; (apply hash-map (key-value-pairs [:id :surname :year :group_id] ["1" "Ivanov" "1996"])) 
+;; (data-record [:id :surname :year :group_id] ["1" "Ivanov" "1996"])
+;; => {:surname "Ivanov", :year "1996", :id "1"}
+;;
+;; Hint: apply, hash-map, key-value-pairs
+(defn data-record [tbl-keys tbl-record]
+  (apply hash-map (key-value-pairs tbl-keys tbl-record ))) 
+
+;; (next student-tbl)
+;; (data-table student-tbl)
 ;; => ({:surname "Ivanov", :year "1996", :id "1"}
 ;;     {:surname "Petrov", :year "1996", :id "2"}
 ;;     {:surname "Sidorov", :year "1997", :id "3"})
@@ -81,8 +99,8 @@
 ;; => ({:surname "Sidorov", :year 1996, :id 3} {:surname "Petrov", :year 1997, :id 2} {:surname "Ivanov", :year 1998, :id 1})
 ;; Hint: if-not, sort-by
 (defn order-by* [data column]
-  :ImplementMe!
   (sort-by column data))
+  :ImplementMe!)
 
 ;; (join* (join* student-subject :student_id student :id) :subject_id subject :id)
 ;; => [{:subject "Math", :subject_id 1, :surname "Ivanov", :year 1998, :student_id 1, :id 1}
